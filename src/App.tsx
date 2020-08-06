@@ -16,14 +16,20 @@ function App(): JSX.Element {
     setNewTask('');
   };
 
-  const addTask = (name: string) => {
+  const addTask = (name: string): void => {
     const newTask: ITask[] = [...task, { name, done: false }];
     setTask(newTask);
   };
 
-  const toogleDoneTask = (i: number) => {
+  const toogleDoneTask = (i: number): void => {
     const newTasks: ITask[] = [...task];
     newTasks[i].done = !newTasks[i].done;
+    setTask(newTasks);
+  };
+
+  const removeTask = (i: number): void => {
+    const newTasks: ITask[] = [...task];
+    newTasks.splice(i, 1);
     setTask(newTasks);
   };
   return (
@@ -55,6 +61,12 @@ function App(): JSX.Element {
                   onClick={() => toogleDoneTask(i)}
                 >
                   {t.done ? '✔ ' : '✗'}
+                </button>
+                <button
+                  className='btn btn-danger'
+                  onClick={() => removeTask(i)}
+                >
+                  🗑️
                 </button>
               </div>
             </div>
