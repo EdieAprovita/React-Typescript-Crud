@@ -22,14 +22,19 @@ function App(): JSX.Element {
   };
   return (
     <Fragment>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          onChange={(e) => setNewTask(e.target.value)}
-          value={newTask}
-        />
-        <button>Save</button>
-      </form>
+      <div className='card'>
+        <div className='card-body'>
+          <form onSubmit={handleSubmit}>
+            <input
+              type='text'
+              onChange={(e) => setNewTask(e.target.value)}
+              value={newTask}
+              className='form-control'
+            />
+            <button>Save</button>
+          </form>
+        </div>
+      </div>
       {task.map((t: ITask, i: number) => {
         return <h1 key={i}>{t.name}</h1>;
       })}
