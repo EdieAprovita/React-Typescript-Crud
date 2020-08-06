@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 interface ITask {
@@ -21,24 +21,33 @@ function App(): JSX.Element {
     setTask(newTask);
   };
   return (
-    <Fragment>
-      <div className='card'>
-        <div className='card-body'>
-          <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              onChange={(e) => setNewTask(e.target.value)}
-              value={newTask}
-              className='form-control'
-            />
-            <button>Save</button>
-          </form>
+    <div className='container p-4'>
+      <div className='row'>
+        <div className='col-md-6 offset-md-3'>
+          <div className='card'>
+            <div className='card-body'>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type='text'
+                  onChange={(e) => setNewTask(e.target.value)}
+                  value={newTask}
+                  className='form-control'
+                  autoFocus
+                />
+                <button className='btn btn-success btn-block mt2'>Save</button>
+              </form>
+            </div>
+          </div>
+          {task.map((t: ITask, i: number) => (
+            <div className='car card-body mt-2' key={i}>
+              <h2 style={{ textDecoration: t.done ? 'line-through' : '' }}>
+                {t.name}
+              </h2>
+            </div>
+          ))}
         </div>
       </div>
-      {task.map((t: ITask, i: number) => {
-        return <h1 key={i}>{t.name}</h1>;
-      })}
-    </Fragment>
+    </div>
   );
 }
 
